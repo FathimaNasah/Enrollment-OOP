@@ -18,6 +18,7 @@ $result = $enroll->getAll();
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Student</th>
                 <th>Course</th>
                 <th>Status</th>
@@ -28,6 +29,7 @@ $result = $enroll->getAll();
         <tbody>
             <?php while($row = mysqli_fetch_assoc($result)): ?>
             <tr>
+                <td><?= $row['id'] ?></td>
                 <td><?= $row['first_name'].' '.$row['last_name'] ?></td>
                 <td><?= $row['course_name'] ?></td>
                 <td><?= $row['status'] ?></td>
