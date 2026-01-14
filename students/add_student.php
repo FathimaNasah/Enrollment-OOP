@@ -1,89 +1,43 @@
+<?php
+require_once __DIR__ . "/../classes/Student.php";
+
+$student = new Student();
+
+if (isset($_POST['submit'])) {
+    $student->add($_POST);
+    header("Location: show_student.php");
+    exit;
+}
+?>
+
 <!doctype html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>student system</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Add Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
 
-    <?php
-    include  "../db_connection.php";
-    include "../classes/Student.php";
+<div class="container mt-4">
+    <h3 class="text-center text-primary">Student Registration</h3>
 
-    if (isset($_POST['submit'])) {
-        $db = new Database();
-        $student = new Student($db->conn);
+    <form method="post" class="mx-auto" style="max-width:500px">
+        <input class="form-control mb-2" name="firstName" placeholder="First Name" required>
+        <input class="form-control mb-2" name="lastName" placeholder="Last Name" required>
+        <input class="form-control mb-2" name="nic" placeholder="NIC" required>
+        <input type="date" class="form-control mb-2" name="dob" required>
 
-        $student->add($_POST);
-        header("Location: show_student.php");
-    }
-    ?>
-
-    <h1 class="heading text-center text-primary mt-2"> Student Registration</h1>
-
-    <div class="container fw-bold">
-
-        <div class="container">
-            <form action="" method="post" style="width:50vw; min-width:300px;">
-                <div class="container mb-3">
-                    <div>
-                        <label class="form-label ">First Name:</label>
-                        <input type="text" class="form-control" name="firstName" placeholder="John">
-                    </div>
-
-                    <div>
-                        <label class="form-label mt-3">Last Name:</label>
-                        <input type="text" class="form-control" name="lastName" placeholder="Malik">
-                    </div>
-
-                    <div>
-                        <label class="form-label mt-3">NIC:</label>
-                        <input type="text" class="form-control" name="nic" placeholder="987654321V">
-                    </div>
-
-                    <div>
-                        <label class="form-label mt-3">DOB:</label>
-                        <input type="date" class="form-control" name="dob" placeholder="Swizerland">
-                    </div>
-
-                    <div class="form-group my-3">
-                        <label>Gender:</label><br>
-
-                        <input type="radio" class="form-check-input mx-3" name="gender" id="male" value="male">
-                        <label for="male" class="form-input-label">Male</label>
-
-                        <input type="radio" class="form-check-input mx-3" name="gender" id="female" value="female">
-                        <label for="female" class="form-input-label">Female</label>
-                    </div>
-
-                    <div>
-                        <label class="form-label mt-3">Address:</label>
-                        <input type="text" class="form-control" name="address" placeholder="Swizerland">
-                    </div>
-
-                    <div class="mt-3">
-                        <label class="form-label">Contact No:</label>
-                        <input type="phone" class="form-control" name="contact" placeholder="0771234567">
-                    </div>
-
-                    <div class="mt-3">
-                        <button type="submit" class="btn btn-success" name="submit">Save</button>
-                        <a href="" class="btn btn-danger">Cancel</a>
-                    </div>
-                </div>
-            </form>
+        <div class="mb-2">
+            <input type="radio" name="gender" value="Male" required> Male
+            <input type="radio" name="gender" value="Female"> Female
         </div>
-    </div>
 
+        <input class="form-control mb-2" name="address" placeholder="Address">
+        <input type="tel" class="form-control mb-3" name="contact" placeholder="Contact" required>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+        <button name="submit" class="btn btn-success">Save</button>
+    </form>
+</div>
 
 </body>
-
 </html>

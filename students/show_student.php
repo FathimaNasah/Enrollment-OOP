@@ -1,59 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once "../classes/Student.php";
+$student = new Student();
+$result = $student->getAll();
+?>
 
+<!doctype html>
+<html>
 <head>
-    <title>Student List</title>
+    <title>Students</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
 
-    <?php
-    require_once "../db_connection.php";
-    require_once "../classes/Student.php";
+<div class="container mt-4">
+    <h3 class="text-center">Student List</h3>
+    <a href="add_student.php" class="btn btn-success mb-3">Add Student</a>
 
-    $db = new Database();
-    $student = new Student($db->conn);
-    $data = $student->getAll();
-    ?>
+    <table class="table table-bordered">
+        <tr class="table-dark">
+            <th>ID</th>
+            <th>Name</th>
+            <th>NIC</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>Action</th>
+        </tr>
 
-    <div class="container mt-5">
-        <h3 class="text-success text-center">Student Details</h3>
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+        <tr>
+            <td><?= $row['id'] ?></td>
+            <td><?= $row['first_name']." ".$row['last_name'] ?></td>
+            <td><?= $row['nic'] ?></td>
+            <td><?= $row['dob'] ?></td>
+            <td><?= $row['gender'] ?></td>
+            <td><?= $row['address'] ?></td>
+            <td><?= $row['contact'] ?></td>
+            <td>
+                <a href="edit_student.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
+                <a href="delete_student.php?id=<?= $row['id'] ?>" 
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        <?php } ?>
+    </table>
+</div>
 
-        <table class="table table-bordered table-striped mt-3">
-            <thead class="table-dark">
-                <tr> 
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>NIC</th>
-                    <th>DOB</th>
-                    <th>Gender</th>
-                    <th>Address</th>
-                    <th>Contact</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <?php
-                while ($row = mysqli_fetch_assoc($data)) { ?>
-                    <tr>
-                        <td><?= $row['id'] ?></td>
-                        <td><?= $row['first_name'] ?></td>
-                        <td><?= $row['last_name'] ?></td>
-                        <td><?= $row['nic'] ?></td>
-                        <td><?= $row['dob'] ?></td>
-                        <td><?= $row['gender'] ?></td>
-                        <td><?= $row['address'] ?></td>
-                        <td><?= $row['contact'] ?></td>
-                        <td>
-                            <a href="edit_student.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="delete_student.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
-                        </td>
-                    </tr>
-                <?php } ?>
-
-            </tbody>
-        </table>
+</body>
+</html>

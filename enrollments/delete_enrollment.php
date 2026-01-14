@@ -1,12 +1,10 @@
 <?php
-require_once "../db_connection.php";
 require_once "../classes/Enrollment.php";
 
-$db = new Database();
-$enrollment = new Enrollment($db->conn);
-
+$enroll = new Enrollment();
 $id = $_GET['id'];
-$enrollment->delete($id);
+
+$enroll->delete($id);
 
 header("Location: show_enrollment.php");
 exit;
