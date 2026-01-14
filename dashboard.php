@@ -68,7 +68,7 @@
         <li class="nav-item"><a class="nav-link text-white" href="courses/add_course.php">Courses</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="enrollments/add_enrollment.php">Enrollments</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="course_teacher/add_course_teacher.php">Course Teachers</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">Reports</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="teachers/report.php">Reports</a></li>
     </ul>
 </nav>
 
@@ -132,7 +132,7 @@
         </div>
 
         <!-- Reports -->
-        <div class="col-md-4 col-lg-4">
+        <div class="col-md-4 col-lg-4" onclick="location.href='teachers/report.php';">
             <div class="card dashboard-card text-center">
                 <div class="icon bg-danger">
                     <i class="bi bi-bar-chart-fill"></i>
