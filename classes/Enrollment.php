@@ -68,7 +68,8 @@ class Enrollment extends Main
 
     // Get single enrollment by ID
     public function getById($id)
-    {
+    {  
+        //return mysqli_query($this->conn, "SELECT * FROM students WHERE id=$id");
         $result = mysqli_query($this->conn, "SELECT * FROM enrollments WHERE id=$id");
         if(!$result){
             die("Fetch Error: " . mysqli_error($this->conn));
